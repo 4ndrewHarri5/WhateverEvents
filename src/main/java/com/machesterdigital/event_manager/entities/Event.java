@@ -1,29 +1,28 @@
 package com.machesterdigital.event_manager.entities;
 
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 
 @Entity
 @Table(name = "events")
-@NoArgsConstructor
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
+    @Column(name = "id")
     private int id;
     @NotBlank
     private String eventName;
-    @NotBlank
     private Date startDate;
-    @NotBlank
     private Date endDate;
 
-    public Event(int id, String eventName, Date startDate, Date endDate){
-        this.id = id;
+    public Event() {
+//        super();
+    }
+
+    public Event(String eventName, Date startDate, Date endDate) {
+//        super();
         this.eventName = eventName;
         this.startDate = startDate;
         this.endDate = endDate;

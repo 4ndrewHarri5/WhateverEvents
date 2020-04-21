@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,12 +31,19 @@ public class EventController {
     }
 
 
+
+    // TODO fix so cannot have same id
     @PostMapping("/events")
-    public ResponseEntity<Event> addEvent(@RequestBody Event event){
+    public ResponseEntity<Event> addEvent(@Valid @RequestBody Event event){
         return  ResponseEntity.ok(eventRepository.save(event));
     }
 
 
+    @DeleteMapping("/events/{id}")
+    public ResponseEntity<Event> deleteEventById(@PathVariable(value = "id") Integer id){
+        eventRepository.deleteById(id);
+        return  ResponseEntity.ok().build();
+    }
 
     // Get event by id
     // Add event
