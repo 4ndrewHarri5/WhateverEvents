@@ -1,4 +1,4 @@
-package com.machesterdigital.event_manager;
+package com.machesterdigital.event_manager.config;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
