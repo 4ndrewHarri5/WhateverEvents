@@ -1,6 +1,7 @@
 package com.machesterdigital.event_manager.controller;
 
 import com.machesterdigital.event_manager.entities.Event;
+import com.machesterdigital.event_manager.exceptions.EventNotFoundException;
 import com.machesterdigital.event_manager.repository.EventRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,6 @@ public class EventController {
     }
 
 
-
     // TODO fix so cannot have same id
     @PostMapping("/events")
     public ResponseEntity<Event> addEvent(@Valid @RequestBody Event event){
@@ -43,6 +43,15 @@ public class EventController {
     public ResponseEntity<Event> deleteEventById(@PathVariable(value = "id") Integer id){
         eventRepository.deleteById(id);
         return  ResponseEntity.ok().build();
+    }
+
+    @ResponseBody
+    @GetMapping("/events/{id}")
+    public ResponseEntity<Event> getEventById(@PathVariable(value = "id") Integer id) throws EventNotFoundException {
+        return ResponseEntity.ok(eventRepository.findById(id)
+                .orElseThrow(() -> new EventNotFoundException(id)));
+
+
     }
 
     // Get event by id
