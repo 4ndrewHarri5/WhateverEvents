@@ -12,7 +12,7 @@ import java.sql.Date;
 public class Event {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotBlank
     private int id;
     @NotBlank
