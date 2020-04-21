@@ -1,0 +1,12 @@
+USE bootcamp1;
+
+CREATE TABLE Events(
+    id int NOT NULL AUTO_INCREMENT,
+    event_name varchar(50) NOT NULL,
+    start_date date NOT NULL,
+    end_date date NOT NULL,
+    PRIMARY KEY (id)
+);
+
+SELECT *
+FROM Events;
