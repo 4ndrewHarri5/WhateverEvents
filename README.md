@@ -3,6 +3,10 @@
 To start the DB: 
 ```docker-compose up```.
 
+
+To shut down the DB + keep everything persisted: ```docker-compose down```.
+
+
 To shut down the DB + remove everything: ```docker-compose down -v```.
 
 
