@@ -8,14 +8,24 @@ import javax.sql.DataSource;
 
 @Configuration
 class DatasourceConfig {
+//
+//    @Bean(name = "bootcamp")
+//    public DataSource dataSource(){
+//        return DataSourceBuilder.create()
+//                .driverClassName("com.mysql.jdbc.Driver")
+//                .url("jdbc:mysql://db-workshop.public-dev.zuto.cloud/bootcamp1")
+//                .username("bootcamp1")
+//                .password("LlamaPancakes")
+//                .build();
+//    }
 
-    @Bean
-    public DataSource dataSource(){
+    @Bean(name = "local")
+    public DataSource dataSourceLocal(){
         return DataSourceBuilder.create()
-                .driverClassName("com.mysql.jdbc.Driver")
-                .url("jdbc:mysql://db-workshop.public-dev.zuto.cloud/bootcamp1")
-                .username("bootcamp1")
-                .password("LlamaPancakes")
+                .driverClassName("com.mysql.cj.jdbc.Driver")
+                .url("jdbc:mysql://localhost:3307/whateverdb")
+                .username("user")
+                .password("password")
                 .build();
     }
 
