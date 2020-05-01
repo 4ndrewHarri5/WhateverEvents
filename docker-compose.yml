@@ -1,24 +1,24 @@
-version: "3.5"
+version: '3.5'
 services:
-  network:
-    command: bash -c ["if [ ! "$(docker network ls | grep db-docker_default)" ]; then
-      echo "Creating db-docker_default network ..."
-      docker network create db-docker_default
-      else
-      echo "db-docker_default network exists."
-      fi"]
-  mysql:
+  docker-mysql:
     image: mysql:8.0
-    container_name: Event_db_container
-    build:
-      context: src/main/resources/database/
-    ports:
-      - "8083:3306"
+    restart: always
+    command: --init-file /data/application/init.sql
     environment:
-      MYSQL_ROOT_USER: root
-      MYSQL_ROOT_PASSWORD: password
-networks:
-  default:
-    external:
-      name: db-docker_default
-
+      MYSQL_DATABASE: 'whateverdb'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3307:3306'
+    expose:
+      # Opens port 3307 on the container
+      - '3307'
+      # Where our data will be persisted
+    volumes:
+      - ./init.sql:/data/application/init.sql
+      - my-db:/var/lib/mysql
+# Names our volume
+volumes:
+  my-db:
