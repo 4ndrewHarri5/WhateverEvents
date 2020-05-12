@@ -1,8 +1,12 @@
 package com.machesterdigital.event_manager.entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
+
 
 @Entity
 @Table(name = "events")
@@ -10,19 +14,24 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id", updatable = false, nullable = false, unique = true)
+    @Column(name = "id", updatable = false, nullable = false, unique = true)
     private int id;
-    @NotBlank
+
+    @NotBlank (message = "Event Name cannot be null")
     private String eventName;
+
+    @NotNull(message = "Start Date Cannot be null")
     private Date startDate;
+
+    @NotNull(message = "End Date Cannot be null")
     private Date endDate;
 
     public Event() {
-//        super();
     }
 
+    @Builder
     public Event(String eventName, Date startDate, Date endDate) {
-//        super();
+        this();
         this.eventName = eventName;
         this.startDate = startDate;
         this.endDate = endDate;
