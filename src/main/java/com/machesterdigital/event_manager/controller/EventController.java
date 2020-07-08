@@ -48,15 +48,19 @@ public class EventController {
     public ResponseEntity<Event> updateEvent(@PathVariable int eventId,
                                              @RequestBody @Valid Event event) {
 
-        // Event retrievedEvent = get Event By id
-        // Event updatedEvent = EventMapper.toEventUpdate(eventId, retrievedEvent, updatedEvent)
-        // save in repository (eventId, updatedEvent)
-        Event updatedEvent = new Event();
-        eventService.updateEvent(updatedEvent);
+//         Event retrievedEvent = get Event By id
+//         Event updatedEvent = EventMapper.toEventUpdate(eventId, retrievedEvent, updatedEvent)
+//         save in repository (eventId, updatedEvent)
+//         Event updatedEvent = new Event();
+//         eventService.updateEvent(updatedEvent);
+
+
+
         return ResponseEntity.of(null);
     }
 
      */
+
 
 
 
